@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  - pull_request
+  - push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: |
+        ./build.sh
+    - uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: |
+          ./build/
+          ./dist/
